@@ -5,7 +5,7 @@ const CustomerOverGeoGraphical = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:2000/api/customers/geographical-distribution")
+    axios.get("https://api-s27s.onrender.com/api/customers/geographical-distribution")
       .then((response) => {
         // setData(response.data);
         // console.log(response.data);

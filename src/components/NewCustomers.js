@@ -18,7 +18,7 @@ const NewCustomers = () => {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:2000/api/customers/new-customers", {
+    axios.get("https://api-s27s.onrender.com/api/customers/new-customers", {
         params: {
           value: type,
         },

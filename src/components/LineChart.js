@@ -17,10 +17,9 @@ const LineChart = () => {
   });
 
   useEffect(() => {
-    console.log(`${process.env.API_BASE_URL}/api/orders/total-sales`);
     // axios.get("http://localhost:2000/api/orders/all-orders")
     axios
-      .get("http://localhost:2000/api/orders/total-sales", {
+      .get("https://api-s27s.onrender.com/api/orders/total-sales", {
         params: {
           value: type,
         },

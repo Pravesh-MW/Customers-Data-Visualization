@@ -19,7 +19,7 @@ const SellsGrowthRate = () => {
     useEffect(() => {
     // axios.get("http://localhost:2000/api/orders/all-orders")
     axios
-        .get("http://localhost:2000/api/orders/Growth-Rate", {
+        .get("https://api-s27s.onrender.com/api/orders/Growth-Rate", {
         params: {
             value: type,
         },
