@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar, Line, Pie, Bubble } from "react-chartjs-2";
+import Graph from "./Graph";
 
-const SellsGrowthRate = () => {
+const SellsGrowthRate = ({API_BASE_URL}) => {
+    const URL = `${API_BASE_URL}/api/orders/Growth-Rate`;
     const [type, setType] = useState(["Date"]);
+    const [chart, setChart] = useState('Line');
     const [data, setData] = useState({
     labels: [],
     datasets: [
@@ -19,7 +22,7 @@ const SellsGrowthRate = () => {
     useEffect(() => {
     // axios.get("http://localhost:2000/api/orders/all-orders")
     axios
-        .get("https://api-s27s.onrender.com/api/orders/Growth-Rate", {
+        .get(URL, {
         params: {
             value: type,
         },
@@ -35,21 +38,21 @@ const SellsGrowthRate = () => {
     }, [type]);
 
     const HandleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setType(e.target.value);
     };
 
+    
+    const HandleChange2 = (e) => {
+        // console.log(e.target.value);
+        setChart(e.target.value);
+    };
+
+
     return (
-    <div>
-        <select onChange={HandleChange}>
-        <option value="daily">Daily</option>
-        <option value="monthly">Monthly</option>
-        <option value="quarterly">Quarterly</option>
-        <option value="yearly">Yearly</option>
-        </select>
-        <Line data={data} />
-        <Bar data={data} />
-    </div>
+        <div>
+          <Graph title="Total Sells Growth Rate" HandleChange={HandleChange} HandleChange2={HandleChange2} data={data} chart={chart}/>
+        </div>
     );
 };
 

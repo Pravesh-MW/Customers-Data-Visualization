@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Bar, Line } from "react-chartjs-2";
-
-const LineChart = () => {
+import { Bar, Line, Pie, Bubble } from "react-chartjs-2";
+import Graph from "./Graph";
+const LineChart = ({API_BASE_URL}) => {
+  const URL = `${API_BASE_URL}/api/orders/total-sales`
   const [type, setType] = useState(["Date"]);
+  const [chart, setChart] = useState('Line');
   const [data, setData] = useState({
     labels: [],
     datasets: [
@@ -19,7 +21,7 @@ const LineChart = () => {
   useEffect(() => {
     // axios.get("http://localhost:2000/api/orders/all-orders")
     axios
-      .get("https://api-s27s.onrender.com/api/orders/total-sales", {
+      .get(URL, {
         params: {
           value: type,
         },
@@ -35,20 +37,19 @@ const LineChart = () => {
   }, [type]);
 
   const HandleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setType(e.target.value);
+  };
+
+  
+  const HandleChange2 = (e) => {
+    // console.log(e.target.value);
+    setChart(e.target.value);
   };
 
   return (
     <div>
-      <select onChange={HandleChange}>
-        <option value="daily">Daily</option>
-        <option value="monthly">Monthly</option>
-        <option value="quarterly">Quarterly</option>
-        <option value="yearly">Yearly</option>
-      </select>
-      <Line data={data} />
-      <Bar data={data} />
+      <Graph title="Total Sells" HandleChange={HandleChange} HandleChange2={HandleChange2} data={data} chart={chart}/>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const CustomerOverGeoGraphical = () => {
+const CustomerOverGeoGraphical = ({API_BASE_URL}) => {
   const [data, setData] = useState([]);
-
+  const URL = `${API_BASE_URL}/api/customers/geographical-distribution`;
   useEffect(() => {
-    axios.get("https://api-s27s.onrender.com/api/customers/geographical-distribution")
+    axios.get(URL)
       .then((response) => {
         // setData(response.data);
         // console.log(response.data);
@@ -17,7 +17,7 @@ const CustomerOverGeoGraphical = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-wrap h-full w-full">
       <table>
         <thead>
           <tr>
